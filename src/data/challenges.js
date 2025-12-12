@@ -17,5 +17,18 @@ export const challengeImages = [
   "https://i.pinimg.com/originals/c9/69/e3/c969e3b134c5cca414217f17169a0387.jpg",
   "https://i.pinimg.com/originals/c8/57/79/c857798c6e74681f588e087844abc5d6.jpg",
   "https://i.pinimg.com/originals/54/75/a6/5475a6175fc7c2ec054e0b9ec9e0eedb.jpg",
-  "https://i.pinimg.com/originals/9b/29/ec/9b29ec720dd7d4a5c179f0694fc7803d.jpg"
+  "https://i.pinimg.com/originals/9b/29/ec/9b29ec720dd7d4a5c179f0694fc7803d.jpg",
+  "https://i.pinimg.com/736x/75/a3/c4/75a3c40300e785621a12b4acd84d8edc.jpg",
+  "https://i.pinimg.com/736x/11/89/f1/1189f1ebfc113ab86f50771498600422.jpg",
+  "https://i.pinimg.com/1200x/3f/14/3a/3f143ac1ab6d5840bd0b7c6692d63337.jpg",
+  "https://i.pinimg.com/originals/39/f8/60/39f860b4fe30aa494e884153f0fbb1a4.jpg",
+  "https://i.pinimg.com/736x/72/9d/6f/729d6f76abc8c1e30763c6eef4faed9a.jpg",
+  "https://i.pinimg.com/1200x/d6/fc/67/d6fc67cee068b77b4f983d8a8acf05de.jpg",
+  "https://i.pinimg.com/1200x/c3/62/b7/c362b777440c87e02d900a6f6406c2a3.jpg",
+  "https://i.pinimg.com/1200x/8b/39/d9/8b39d943ad1212d3cb8c1863efafa8cf.jpg",
+  "https://i.pinimg.com/1200x/cc/b1/06/ccb1069f9101a2ff4546d2399276f6b8.jpg",
+  "https://i.pinimg.com/736x/31/cf/65/31cf657c2b2cf84e5163f08bfbf84926.jpg",
+  "https://i.pinimg.com/736x/c4/81/85/c48185a34c8c4736f9259760299066dd.jpg",
+  "https://i.pinimg.com/736x/e0/6c/03/e06c0396870295b54d94a945221b5bec.jpg",
+  "https://i.pinimg.com/1200x/59/63/3c/59633c8ca32d6a7e5a964f95dc8710d6.jpg"
 ];
