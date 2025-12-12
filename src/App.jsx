@@ -1,0 +1,44 @@
+import { useState } from 'react'
+import Onboarding from './components/Onboarding'
+import Home from './components/Home'
+import ChallengeSelector from './components/ChallengeSelector'
+import Result from './components/Result'
+import { challenges } from './data/challenges'
+
+function App() {
+  const [step, setStep] = useState('ONBOARDING'); // ONBOARDING | HOME | SELECTING | RESULT
+  const [user, setUser] = useState({ nickname: '', avatar: '🎅' });
+  const [currentChallenge, setCurrentChallenge] = useState(null);
+
+  const handleUserComplete = (userData) => {
+    setUser(userData);
+    setStep('HOME');
+  };
+
+  const startChallenge = () => {
+    setStep('SELECTING');
+  };
+
+  const handleChallengeSelected = (challengeId) => {
+    const selected = challenges.find(c => c.id === challengeId);
+    setCurrentChallenge(selected);
+    setTimeout(() => {
+      setStep('RESULT');
+    }, 500); // Small delay for effect
+  };
+
+  const nextChallenge = () => {
+    setStep('SELECTING');
+  };
+
+  return (
+    <div className="container">
+      {step === 'ONBOARDING' && <Onboarding onComplete={handleUserComplete} />}
+      {step === 'HOME' && <Home user={user} onStart={startChallenge} />}
+      {step === 'SELECTING' && <ChallengeSelector onComplete={handleChallengeSelected} />}
+      {step === 'RESULT' && <Result challenge={currentChallenge} onNext={nextChallenge} />}
+    </div>
+  )
+}
+
+export default App
