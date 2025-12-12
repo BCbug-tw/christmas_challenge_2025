@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const AVATARS = ['🎅', '🤶', '🦌', '⛄', '🎄', '🎁'];
+const AVATARS = ['🎅', '🤶', '🦌', '⛄', '🎄', '🎁', '🐻', '🐨', '🐶', '🐵', '🐼', '🐥', '🐧', '🦩', '🐊'];
 
 function Onboarding({ onComplete }) {
     const [nickname, setNickname] = useState('');
