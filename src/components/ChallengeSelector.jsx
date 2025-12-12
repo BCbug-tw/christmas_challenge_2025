@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { challenges } from '../data/challenges';
+import { challengeImages } from '../data/challenges';
 
 function ChallengeSelector({ onComplete }) {
     const [displayIndex, setDisplayIndex] = useState(0);
@@ -11,7 +11,7 @@ function ChallengeSelector({ onComplete }) {
 
         // Spinning effect
         interval = setInterval(() => {
-            setDisplayIndex(prev => (prev + 1) % challenges.length);
+            setDisplayIndex(prev => (prev + 1) % challengeImages.length);
         }, 100);
 
         // Stop spinning after 3 seconds
@@ -20,12 +20,12 @@ function ChallengeSelector({ onComplete }) {
             setIsSpinning(false);
 
             // Select a random final challenge
-            const finalIndex = Math.floor(Math.random() * challenges.length);
+            const finalIndex = Math.floor(Math.random() * challengeImages.length);
             setDisplayIndex(finalIndex);
 
             // Wait a moment showing the result then proceed
             setTimeout(() => {
-                onComplete(challenges[finalIndex].id);
+                onComplete(challengeImages[finalIndex]);
             }, 1000);
 
         }, 3000);
@@ -36,21 +36,36 @@ function ChallengeSelector({ onComplete }) {
         };
     }, [onComplete]);
 
-    const currentItem = challenges[displayIndex];
+    const currentImage = challengeImages[displayIndex];
 
     return (
         <div className="card">
             <h2>正在抽取挑戰...</h2>
             <div style={{
                 margin: '2rem auto',
-                fontSize: '5rem',
+                height: '300px',
+                width: '300px',
+                overflow: 'hidden',
+                borderRadius: '12px',
+                border: '4px solid #ff4d4d',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#eee',
                 animation: isSpinning ? 'pulse 0.5s infinite' : 'none'
             }}>
-                🎁
+                {/* Image preview during spin */}
+                <img
+                    src={currentImage}
+                    alt="Challenge Preview"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                    }}
+                />
             </div>
-            <h3 style={{ opacity: 0.8 }}>
-                {currentItem ? currentItem.title : '...'}
-            </h3>
         </div>
     );
 }

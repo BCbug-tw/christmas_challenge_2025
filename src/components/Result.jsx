@@ -1,36 +1,42 @@
-function Result({ challenge, onNext }) {
-    if (!challenge) return null;
+function Result({ imageUrl, onNext }) {
+    if (!imageUrl) return null;
 
     return (
         <div className="card">
-            <div style={{ fontSize: '1.2rem', color: '#888', marginBottom: '0.5rem' }}>
-                挑戰 #{challenge.id}
-            </div>
-            <h1 style={{ fontSize: '2.5rem', marginTop: 0 }}>{challenge.title}</h1>
+            <h1 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
+                您的挑戰是...！
+            </h1>
 
             <div style={{
                 background: '#eee',
-                height: '200px',
+                maxWidth: '100%',
+                maxHeight: '60vh',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                margin: '1rem 0',
+                margin: '1rem auto',
                 borderRadius: '8px',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
             }}>
-                {/* Placeholder for real image */}
-                <div style={{ fontSize: '3rem' }}>📸</div>
+                <img
+                    src={imageUrl}
+                    alt="Challenge Result"
+                    style={{
+                        width: '100%',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        maxHeight: '50vh'
+                    }}
+                />
             </div>
 
-            <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                {challenge.description}
-            </p>
-            <p style={{ color: '#666' }}>
-                比姿提示：{challenge.instruction}
+            <p style={{ color: '#666', marginBottom: '2rem' }}>
+                模仿照片中的動作並拍照留念吧！
             </p>
 
             <button onClick={onNext} className="btn">
-                下一個挑戰
+                再玩一次
             </button>
         </div>
     );

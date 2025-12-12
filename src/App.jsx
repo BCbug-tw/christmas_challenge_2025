@@ -3,12 +3,12 @@ import Onboarding from './components/Onboarding'
 import Home from './components/Home'
 import ChallengeSelector from './components/ChallengeSelector'
 import Result from './components/Result'
-import { challenges } from './data/challenges'
+import { challengeImages } from './data/challenges'
 
 function App() {
   const [step, setStep] = useState('ONBOARDING'); // ONBOARDING | HOME | SELECTING | RESULT
   const [user, setUser] = useState({ nickname: '', avatar: '🎅' });
-  const [currentChallenge, setCurrentChallenge] = useState(null);
+  const [currentChallengeUrl, setCurrentChallengeUrl] = useState(null);
 
   const handleUserComplete = (userData) => {
     setUser(userData);
@@ -19,9 +19,8 @@ function App() {
     setStep('SELECTING');
   };
 
-  const handleChallengeSelected = (challengeId) => {
-    const selected = challenges.find(c => c.id === challengeId);
-    setCurrentChallenge(selected);
+  const handleChallengeSelected = (imageUrl) => {
+    setCurrentChallengeUrl(imageUrl);
     setTimeout(() => {
       setStep('RESULT');
     }, 500); // Small delay for effect
@@ -36,7 +35,7 @@ function App() {
       {step === 'ONBOARDING' && <Onboarding onComplete={handleUserComplete} />}
       {step === 'HOME' && <Home user={user} onStart={startChallenge} />}
       {step === 'SELECTING' && <ChallengeSelector onComplete={handleChallengeSelected} />}
-      {step === 'RESULT' && <Result challenge={currentChallenge} onNext={nextChallenge} />}
+      {step === 'RESULT' && <Result imageUrl={currentChallengeUrl} onNext={nextChallenge} />}
     </div>
   )
 }
