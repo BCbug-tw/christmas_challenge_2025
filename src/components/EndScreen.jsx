@@ -41,7 +41,16 @@ function EndScreen({ user, history }) {
     }, []);
 
     return (
-        <div className="card" style={{ maxWidth: '600px', padding: '3rem 2rem', position: 'relative', overflow: 'hidden' }}>
+        <div className="card" style={{
+            maxWidth: '600px',
+            padding: '3rem 2rem',
+            position: 'relative',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}>
             <div className="celebration-icon" style={{ fontSize: '5rem', marginBottom: '1rem', animation: 'bounce 2s infinite' }}>🎀</div>
             <h1 style={{
                 fontSize: '2rem',
