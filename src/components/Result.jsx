@@ -1,4 +1,4 @@
-function Result({ imageUrl, onNext, onViewHistory }) {
+function Result({ imageUrl, onNext, onViewHistory, onEnd }) {
     if (!imageUrl) return null;
 
     return (
@@ -45,6 +45,26 @@ function Result({ imageUrl, onNext, onViewHistory }) {
                     style={{ background: '#4CAF50' }}
                 >
                     挑戰紀錄
+                </button>
+            </div>
+
+            <div style={{ marginTop: '3rem' }}>
+                <button
+                    onClick={() => {
+                        if (window.confirm('確定要結束挑戰嗎？(將會進入結算畫面)')) {
+                            onEnd();
+                        }
+                    }}
+                    className="btn"
+                    style={{
+                        background: 'transparent',
+                        color: '#999',
+                        border: '1px solid #ddd',
+                        fontSize: '0.9rem',
+                        padding: '0.5rem 1rem'
+                    }}
+                >
+                    結束挑戰
                 </button>
             </div>
         </div>
