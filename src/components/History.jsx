@@ -64,10 +64,9 @@ function History({ user, history, onBack }) {
             </h3>
 
             <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
                 gap: '12px',
-                justifyContent: 'flex-start',
                 marginBottom: '2rem'
             }}>
                 {displayHistory.map((img, index) => {
@@ -80,8 +79,8 @@ function History({ user, history, onBack }) {
                             key={originalIndex}
                             onClick={() => setSelectedImage(img)}
                             style={{
-                                width: '80px',
-                                height: '80px',
+                                width: '100%',
+                                aspectRatio: '1',
                                 borderRadius: '8px',
                                 overflow: 'hidden',
                                 border: img === selectedImage ? '3px solid #ff4d4d' : '1px solid #ddd',
