@@ -1,8 +1,16 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 
 function History({ user, history, onBack }) {
-    // Default to the last image (latest) if available
-    const [selectedImage, setSelectedImage] = useState(history.length > 0 ? history[history.length - 1] : null);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    // Update selected image when history changes or component mounts
+    useEffect(() => {
+        if (history && history.length > 0) {
+            // Default to the last image (latest)
+            setSelectedImage(history[history.length - 1]);
+        }
+    }, [history]);
 
     if (!history || history.length === 0) {
         return (
@@ -12,6 +20,9 @@ function History({ user, history, onBack }) {
             </div>
         );
     }
+
+    // Create a reversed copy for display so latest is first
+    const displayHistory = [...history].reverse();
 
     return (
         <div className="card" style={{ maxWidth: '800px' }}>
@@ -59,33 +70,39 @@ function History({ user, history, onBack }) {
                 justifyContent: 'flex-start',
                 marginBottom: '2rem'
             }}>
-                {history.map((img, index) => (
-                    <div
-                        key={index}
-                        onClick={() => setSelectedImage(img)}
-                        style={{
-                            width: '80px',
-                            height: '80px',
-                            borderRadius: '8px',
-                            overflow: 'hidden',
-                            border: img === selectedImage ? '3px solid #ff4d4d' : '1px solid #ddd',
-                            cursor: 'pointer',
-                            opacity: img === selectedImage ? 1 : 0.7,
-                            transition: 'all 0.2s',
-                            transform: img === selectedImage ? 'scale(1.05)' : 'scale(1)'
-                        }}
-                    >
-                        <img
-                            src={img}
-                            alt={`History ${index + 1}`}
+                {displayHistory.map((img, index) => {
+                    // Original index calculation (since we reversed the array)
+                    // The latest item is at index 0 in displayHistory, which corresponds to history.length - 1
+                    const originalIndex = history.length - 1 - index;
+
+                    return (
+                        <div
+                            key={originalIndex}
+                            onClick={() => setSelectedImage(img)}
                             style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'cover'
+                                width: '80px',
+                                height: '80px',
+                                borderRadius: '8px',
+                                overflow: 'hidden',
+                                border: img === selectedImage ? '3px solid #ff4d4d' : '1px solid #ddd',
+                                cursor: 'pointer',
+                                opacity: img === selectedImage ? 1 : 0.7,
+                                transition: 'all 0.2s',
+                                transform: img === selectedImage ? 'scale(1.05)' : 'scale(1)'
                             }}
-                        />
-                    </div>
-                ))}
+                        >
+                            <img
+                                src={img}
+                                alt={`History ${originalIndex + 1} `}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover'
+                                }}
+                            />
+                        </div>
+                    );
+                })}
             </div>
 
             <button onClick={onBack} className="btn" style={{ background: '#666' }}>
