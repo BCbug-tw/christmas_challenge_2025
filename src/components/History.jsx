@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 function History({ user, history, onBack }) {
-    // Default to the first image if available
-    const [selectedImage, setSelectedImage] = useState(history.length > 0 ? history[0] : null);
+    // Default to the last image (latest) if available
+    const [selectedImage, setSelectedImage] = useState(history.length > 0 ? history[history.length - 1] : null);
 
     if (!history || history.length === 0) {
         return (
