@@ -65,7 +65,8 @@ function EndScreen({ user, history }) {
                     lineHeight: '1.8',
                     marginBottom: '2rem'
                 }}>
-                    恭喜您完成聖誕大作戰之情侶照大挑戰！<br />
+                    恭喜您完成
+                    聖誕大作戰之情侶照大挑戰！<br />
 
                     您一共完成了
                     <span style={{
