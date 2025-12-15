@@ -58,7 +58,7 @@ function EndScreen({ user, history }) {
 
             <div style={{ animation: 'fadeInUp 1s ease-out 0.5s backwards' }}>
                 <p style={{
-                    fontSize: '1.5rem',
+                    fontSize: '1.1rem',
                     fontWeight: 'bold',
                     color: '#d4af37',
                     textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
@@ -71,7 +71,7 @@ function EndScreen({ user, history }) {
                     您一共完成了
                     <span style={{
                         color: '#ff4d4d',
-                        fontSize: '2rem',
+                        fontSize: '1.5rem',
                         fontWeight: 'bold',
                         margin: '0 8px',
                         textShadow: '2px 2px 0px rgba(0,0,0,0.1)',
