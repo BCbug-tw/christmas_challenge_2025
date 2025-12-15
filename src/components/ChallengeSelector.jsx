@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { challengeImages } from '../data/challenges';
 
-function ChallengeSelector({ onComplete }) {
+function ChallengeSelector({ onComplete, history = [] }) {
     const [displayIndex, setDisplayIndex] = useState(0);
     const [isSpinning, setIsSpinning] = useState(true);
 
@@ -20,12 +20,19 @@ function ChallengeSelector({ onComplete }) {
             setIsSpinning(false);
 
             // Select a random final challenge
-            const finalIndex = Math.floor(Math.random() * challengeImages.length);
+            // Filter out images that are already in history
+            const available = challengeImages.filter(img => !history.includes(img));
+            // If all used, reset to full pool (or handle strictly)
+            const pool = available.length > 0 ? available : challengeImages;
+
+            const finalImage = pool[Math.floor(Math.random() * pool.length)];
+            const finalIndex = challengeImages.indexOf(finalImage);
+
             setDisplayIndex(finalIndex);
 
             // Wait a moment showing the result then proceed
             setTimeout(() => {
-                onComplete(challengeImages[finalIndex]);
+                onComplete(finalImage);
             }, 1000);
 
         }, 3000);
@@ -34,7 +41,7 @@ function ChallengeSelector({ onComplete }) {
             clearInterval(interval);
             clearTimeout(timeout);
         };
-    }, [onComplete]);
+    }, [onComplete, history]);
 
     const currentImage = challengeImages[displayIndex];
 

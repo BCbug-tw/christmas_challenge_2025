@@ -10,6 +10,8 @@ function App() {
   const [user, setUser] = useState({ nickname: '', avatar: '🎅' });
   const [currentChallengeUrl, setCurrentChallengeUrl] = useState(null);
 
+  const [history, setHistory] = useState([]);
+
   const handleUserComplete = (userData) => {
     setUser(userData);
     setStep('HOME');
@@ -21,6 +23,7 @@ function App() {
 
   const handleChallengeSelected = (imageUrl) => {
     setCurrentChallengeUrl(imageUrl);
+    setHistory(prev => [...prev, imageUrl]);
     setTimeout(() => {
       setStep('RESULT');
     }, 500); // Small delay for effect
@@ -34,8 +37,8 @@ function App() {
     <div className="container">
       {step === 'ONBOARDING' && <Onboarding onComplete={handleUserComplete} />}
       {step === 'HOME' && <Home user={user} onStart={startChallenge} />}
-      {step === 'SELECTING' && <ChallengeSelector onComplete={handleChallengeSelected} />}
-      {step === 'RESULT' && <Result imageUrl={currentChallengeUrl} onNext={nextChallenge} />}
+      {step === 'SELECTING' && <ChallengeSelector onComplete={handleChallengeSelected} history={history} />}
+      {step === 'RESULT' && <Result imageUrl={currentChallengeUrl} onNext={nextChallenge} history={history} />}
     </div>
   )
 }
