@@ -65,8 +65,7 @@ function EndScreen({ user, history }) {
                     lineHeight: '1.8',
                     marginBottom: '2rem'
                 }}>
-                    <span style={{ color: '#2c3e50' }}>{user.nickname}</span> 恭喜您完成<br />
-                    聖誕大挑戰之情侶照大挑戰！<br />
+                    恭喜您完成聖誕大作戰之情侶照大挑戰！<br />
 
                     您一共完成了
                     <span style={{
@@ -82,18 +81,7 @@ function EndScreen({ user, history }) {
                     </span>
                     張照片。<br />
 
-                    <span style={{
-                        background: 'linear-gradient(to right, #ff4d4d, #d4af37)',
-                        color: 'white',
-                        padding: '2px 8px',
-                        borderRadius: '4px',
-                        fontSize: '1.1rem',
-                        boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-                        verticalAlign: 'middle',
-                        textShadow: 'none'
-                    }}>
-                        聖誕大挑戰大成功！
-                    </span>
+                    聖誕大作戰挑戰大成功！<br />
                     <br /><br />
                     希望您留下美好的回憶。<br />
                     聖誕快樂！ 🎄🎅🎁
