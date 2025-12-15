@@ -3,7 +3,7 @@ import Onboarding from './components/Onboarding'
 import Home from './components/Home'
 import ChallengeSelector from './components/ChallengeSelector'
 import Result from './components/Result'
-import { challengeImages } from './data/challenges'
+
 
 function App() {
   const [step, setStep] = useState('ONBOARDING'); // ONBOARDING | HOME | SELECTING | RESULT
