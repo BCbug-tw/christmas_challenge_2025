@@ -1,4 +1,9 @@
+import { useState } from 'react';
+import ConfirmationModal from './ConfirmationModal';
+
 function Result({ imageUrl, onNext, onViewHistory, onEnd }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     if (!imageUrl) return null;
 
     return (
@@ -50,11 +55,7 @@ function Result({ imageUrl, onNext, onViewHistory, onEnd }) {
 
             <div style={{ marginTop: '3rem' }}>
                 <button
-                    onClick={() => {
-                        if (window.confirm('確定要結束挑戰嗎？(將會進入結算畫面)')) {
-                            onEnd();
-                        }
-                    }}
+                    onClick={() => setIsModalOpen(true)}
                     className="btn"
                     style={{
                         background: 'transparent',
@@ -67,6 +68,15 @@ function Result({ imageUrl, onNext, onViewHistory, onEnd }) {
                     結束挑戰
                 </button>
             </div>
+
+            <ConfirmationModal
+                isOpen={isModalOpen}
+                onCancel={() => setIsModalOpen(false)}
+                onConfirm={() => {
+                    setIsModalOpen(false);
+                    onEnd();
+                }}
+            />
         </div>
     );
 }

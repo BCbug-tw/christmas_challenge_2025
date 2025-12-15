@@ -4,57 +4,116 @@ import confetti from 'canvas-confetti';
 function EndScreen({ user, history }) {
 
     useEffect(() => {
-        // Fire confetti when component mounts
-        const duration = 3 * 1000;
+        // Falling snow/confetti effect
+        const duration = 15 * 1000;
         const animationEnd = Date.now() + duration;
-        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+        let skew = 1;
 
-        const randomInRange = (min, max) => Math.random() * (max - min) + min;
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
 
-        const interval = setInterval(function () {
+        (function frame() {
             const timeLeft = animationEnd - Date.now();
+            const ticks = Math.max(200, 500 * (timeLeft / duration));
+            skew = Math.max(0.8, skew - 0.001);
 
-            if (timeLeft <= 0) {
-                return clearInterval(interval);
+            confetti({
+                particleCount: 1,
+                startVelocity: 0,
+                ticks: ticks,
+                origin: {
+                    x: Math.random(),
+                    // since particles fall down, skew start toward the top
+                    y: (Math.random() * skew) - 0.2
+                },
+                colors: ['#ff4d4d', '#ffffff', '#2ecc71', '#d4af37'],
+                shapes: ['circle', 'square'],
+                gravity: randomInRange(0.4, 0.8),
+                scalar: randomInRange(0.4, 1),
+                drift: randomInRange(-0.4, 0.4)
+            });
+
+            if (timeLeft > 0) {
+                requestAnimationFrame(frame);
             }
-
-            const particleCount = 50 * (timeLeft / duration);
-
-            // source 1
-            confetti({
-                ...defaults,
-                particleCount,
-                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-            });
-            // source 2
-            confetti({
-                ...defaults,
-                particleCount,
-                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-            });
-        }, 250);
-
-        return () => clearInterval(interval);
+        }());
     }, []);
 
     return (
-        <div className="card" style={{ maxWidth: '600px', padding: '3rem 2rem' }}>
-            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎉</div>
-            <h1 style={{ color: '#d4af37', fontSize: '2rem', marginBottom: '2rem' }}>
+        <div className="card" style={{ maxWidth: '600px', padding: '3rem 2rem', position: 'relative', overflow: 'hidden' }}>
+            <div className="celebration-icon" style={{ fontSize: '5rem', marginBottom: '1rem', animation: 'bounce 2s infinite' }}>🎉</div>
+            <h1 style={{
+                fontSize: '2.5rem',
+                marginBottom: '2rem',
+                background: 'linear-gradient(45deg, #d4af37, #ff4d4d)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
+                fontWeight: '800',
+                animation: 'scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            }}>
                 {user.nickname}，恭喜您！
             </h1>
 
-            <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#444', marginBottom: '2rem' }}>
-                {user.nickname} 恭喜您完成聖誕大挑戰之情侶照大挑戰！<br />
-                您一共完成了 <strong style={{ color: '#ff4d4d', fontSize: '1.5rem' }}>{history.length}</strong> 張照片。<br />
-                聖誕大挑戰大成功！<br />
-                希望您留下美好的回憶。<br />
-                聖誕快樂！ 🎄🎅🎁
-            </p>
+            <div style={{ animation: 'fadeInUp 1s ease-out 0.5s backwards' }}>
+                <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#444', marginBottom: '2rem' }}>
+                    <span style={{ fontWeight: 'bold', color: '#2c3e50' }}>{user.nickname}</span> 恭喜您完成<br />
+                    <span style={{ color: '#2ecc71', fontWeight: 'bold' }}>聖誕大挑戰之情侶照大挑戰！</span><br />
+
+                    您一共完成了
+                    <span style={{
+                        color: '#ff4d4d',
+                        fontSize: '2rem',
+                        fontWeight: 'bold',
+                        margin: '0 8px',
+                        textShadow: '2px 2px 0px rgba(0,0,0,0.1)',
+                        display: 'inline-block',
+                        animation: 'pulse 1.5s infinite'
+                    }}>
+                        {history.length}
+                    </span>
+                    張照片。<br />
+
+                    <span style={{
+                        background: 'linear-gradient(to right, #ff4d4d, #d4af37)',
+                        color: 'white',
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        fontSize: '1.1rem',
+                        boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+                    }}>
+                        聖誕大挑戰大成功！
+                    </span>
+                    <br /><br />
+                    希望您留下美好的回憶。<br />
+                    <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#d4af37', textShadow: '1px 1px 2px rgba(0,0,0,0.1)' }}>
+                        聖誕快樂！ 🎄🎅🎁
+                    </span>
+                </p>
+            </div>
 
             <div style={{ marginTop: '3rem', fontSize: '0.9rem', color: '#888' }}>
-                Refresh page to restart
+                Reflesh page to restart
             </div>
+
+            <style>
+                {`
+                @keyframes scaleIn {
+                    from { transform: scale(0.5); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+                @keyframes fadeInUp {
+                    from { transform: translateY(20px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+                @keyframes bounce {
+                    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+                    40% {transform: translateY(-20px);}
+                    60% {transform: translateY(-10px);}
+                }
+                `}
+            </style>
         </div>
     );
 }
