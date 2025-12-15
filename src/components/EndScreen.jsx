@@ -42,9 +42,9 @@ function EndScreen({ user, history }) {
 
     return (
         <div className="card" style={{ maxWidth: '600px', padding: '3rem 2rem', position: 'relative', overflow: 'hidden' }}>
-            <div className="celebration-icon" style={{ fontSize: '5rem', marginBottom: '1rem', animation: 'bounce 2s infinite' }}>🎉</div>
+            <div className="celebration-icon" style={{ fontSize: '5rem', marginBottom: '1rem', animation: 'bounce 2s infinite' }}>🎀</div>
             <h1 style={{
-                fontSize: '2.5rem',
+                fontSize: '2rem',
                 marginBottom: '2rem',
                 background: 'linear-gradient(45deg, #d4af37, #ff4d4d)',
                 WebkitBackgroundClip: 'text',
@@ -65,7 +65,7 @@ function EndScreen({ user, history }) {
                     lineHeight: '1.8',
                     marginBottom: '2rem'
                 }}>
-                    恭喜您完成
+                    恭喜您完成<br />
                     聖誕大作戰之情侶照大挑戰！<br />
 
                     您一共完成了
@@ -83,7 +83,6 @@ function EndScreen({ user, history }) {
                     張照片。<br />
 
                     聖誕大作戰挑戰大成功！<br />
-                    <br /><br />
                     希望您留下美好的回憶。<br />
                     聖誕快樂！ 🎄🎅🎁
                 </p>

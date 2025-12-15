@@ -40,14 +40,27 @@ function Result({ imageUrl, onNext, onViewHistory, onEnd }) {
                 模仿照片中的動作並拍照留念吧！
             </p>
 
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-                <button onClick={onNext} className="btn">
+            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
+                <button
+                    onClick={onNext}
+                    className="btn"
+                    style={{
+                        padding: '0.6rem 1rem',
+                        fontSize: '0.95rem',
+                        whiteSpace: 'nowrap'
+                    }}
+                >
                     再玩一次
                 </button>
                 <button
                     onClick={onViewHistory}
                     className="btn"
-                    style={{ background: '#4CAF50' }}
+                    style={{
+                        background: '#4CAF50',
+                        padding: '0.6rem 1rem',
+                        fontSize: '0.95rem',
+                        whiteSpace: 'nowrap'
+                    }}
                 >
                     挑戰紀錄
                 </button>
