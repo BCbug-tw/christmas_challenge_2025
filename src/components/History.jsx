@@ -65,7 +65,7 @@ function History({ user, history, onBack }) {
 
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
+                gridTemplateColumns: 'repeat(2, 1fr)',
                 gap: '12px',
                 marginBottom: '2rem'
             }}>
